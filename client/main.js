@@ -14,7 +14,15 @@ function getDateString(timestamp) {
   const hourDifference = Math.floor((timestamp - Date.now()) / milliInHour);
 
   if (hourDifference < 1 || hourDifference > threshold) {
-    return new Date(timestamp).toLocaleString();
+    let date = new Date(timestamp);
+    let out = "";
+    out += String(date.getDate()) + " ";
+    out += ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][date.getMonth()] + " "
+    out += String(date.getUTCFullYear()) + ", ";
+    out += (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ":";
+    out += (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + " ";
+    out += (date.getHours() > 11 ? "PM" : "AM");
+    return out;
   } else {
     return "In " + hourDifference + " hour" + ((hourDifference === 1) ? "" : "s");
   }
