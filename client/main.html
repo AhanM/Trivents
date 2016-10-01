@@ -9,6 +9,7 @@
 <template name="mainLayout">
   <header>
     <h1>Welcome to Trivents!</h1>
+    <h3><a href="/getevent">Get Events</a></h3>
   </header>
   <main>
     {{> Template.dynamic template=main}}
@@ -26,9 +27,18 @@
 </template>
 
 <template name="eventli">
-  <li><a href="/event/{{id}}">{{text}}</a></li>
+  <li><a href="/event/{{_id}}">{{name}}</a></li>
 </template>
 
 <template name="event">
-  <p>This is event {{id}}</p>
+  <p>This is Event ID: {{id}}
+  <br>
+  <b>Name:</b> {{res.name}}
+  <br>
+  <b>Description:</b> {{res.description}}
+  <br>
+  <b>Location:</b> {{res.loc}}
+  <br>
+  <b>Time:</b> {{res.time}}</p>
+
 </template>
