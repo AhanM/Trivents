@@ -74,8 +74,6 @@ Meteor.methods({
 			createdAt: new Date(),
       		// picture: res.picture
 		});
-
-		console.log(res.picture);
 	}
 	// 'posteventData'({name, description, loc, lat,lng, time, picture})
 });

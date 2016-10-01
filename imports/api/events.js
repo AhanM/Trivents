@@ -11,14 +11,18 @@ Meteor.methods({
 
 		//posting to evenbrite
 		HTTP.call('POST',
-			'https://eventbriteapi.com/v3/events/?token=6XZGEV3DXPBLJKFD2J7J',
+			"https://www.eventbriteapi.com/v3/events/?token=6XZGEV3DXPBLJKFD2J7J"
+			,
 			{
-				'event.name.html': res.name,
-				'event.start.utc': res.start_time, //todo: datetime
-				'event.start.timezone': "America/Los_Angeles",
-				'event.end.utc': res.end_time, //todo: datetime
-				'event.currency': "USD"
-			},
-			(err, result) => { console.log(err, result); })
+				"data": {
+					'event.name.html': res.name,
+					'event.start.utc': new Date(res.start_time).toISOString().split('.')[0] + "Z", //todo: datetime
+					'event.start.timezone': "America/Los_Angeles",
+					'event.end.utc': new Date(res.end_time).toISOString().split('.')[0] + "Z", //todo: datetime
+					'event.end.timezone': "America/Los_Angeles",
+					'event.currency': "USD"
+				}
+			},			
+			(err, result) => { console.log(result); });
 	}
 });
