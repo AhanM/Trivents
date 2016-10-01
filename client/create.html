@@ -5,6 +5,8 @@
 
 		<label>Event Location</label>
 		<input type=text id='loc' name='location'><br>
+		<input type=hidden id='lat' name='lat'>
+		<input type=hidden id='lng' name='lng'>
 
 		<label>Start Time</label>
 		<input type=date name='startDate'>
@@ -156,13 +158,10 @@ google.maps.__gjsload__('places', function(_){'use strict';var Cw=function(a,b){
 /*------------- our code ------------------*/
 var autocomplete = new google.maps.places.Autocomplete(document.getElementById('loc'));
 autocomplete.addListener('place_changed', function() {
-	infowindow.close();
-	marker.setVisible(false);
-	var place = autocomplete.getPlace();
-	if (!place.geometry) {
-		window.alert("Autocomplete's returned place contains no geometry");
-		return;
-	}});
+	var choiceLoc = autocomplete.getPlace().geometry.location;
+	document.getElementById('lat').value = choiceLoc.lat();
+	document.getElementById('lng').value = choiceLoc.lng();
+});
 
 </script>
 </template>

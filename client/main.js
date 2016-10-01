@@ -14,21 +14,13 @@ UI.registerHelper('breaklines', function(text, options) {
   return new Spacebars.SafeString(text);
 });
 
-function getDateString(timestamp) {
+function getDateString(timestamp, text) {
   const threshold = 23;
   const milliInHour = 60 * 60 * 1000;
   const hourDifference = Math.floor((timestamp - Date.now()) / milliInHour);
 
   if (hourDifference < 1 || hourDifference > threshold) {
-    let date = new Date(timestamp);
-    let out = "";
-    out += String(date.getDate()) + " ";
-    out += ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][date.getMonth()] + " "
-    out += String(date.getUTCFullYear()) + ", ";
-    out += (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ":";
-    out += (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + " ";
-    out += (date.getHours() > 11 ? "PM" : "AM");
-    return out;
+    return text; 
   } else {
     return "In " + hourDifference + " hour" + ((hourDifference === 1) ? "" : "s");
   }
@@ -38,12 +30,12 @@ Template.curevents.helpers({
 	live_events: function() {
     const currTime = Date.now();
     let events = Events.find({ start_time: {$lt: currTime}, end_time: {$gt: currTime} }, { sort: { start_time: 1 }});
-    return events.map(e => { e.time = getDateString(e.start_time); return e; });
+    return events.map(e => {e.time = getDateString(e.start_time, e.time); return e;});
   },
   future_events: function() {
     const currTime = Date.now();
     let events = Events.find({ start_time: {$gt: currTime} }, { sort: { start_time: 1 }});
-    return events.map(e => { e.time = getDateString(e.start_time); return e; })
+    return events.map(e => {e.time = getDateString(e.start_time, e.time); return e;});
   }
 });
 
