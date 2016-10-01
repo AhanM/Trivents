@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Events } from '../imports/api/events.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './main.html';
 import './getevent.html';
@@ -52,7 +53,7 @@ Template.getevent.events({
     
     // Insert into collection
     Meteor.call('inserteventData', {eventurl: text});
-    
+    instance.state.set
     // Clear form
     target.url.value = '';
   },
