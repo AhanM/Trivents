@@ -1,0 +1,21 @@
+<head>
+  <title>SDhacks</title>
+</head>
+
+<body>
+  <h1>Welcome to Trivents!</h1>
+  {{> curevents}}
+</body>
+
+<template name="curevents">
+  <h3>Live Events</h3>
+  <ul>
+    {{#each events}}
+      {{> event}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="event">
+  <li><a href="">{{text}}</a></li>
+</template>
