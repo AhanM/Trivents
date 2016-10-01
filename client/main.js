@@ -26,7 +26,7 @@ Template.getevent.onCreated(function bodyOnCreated() {
 });
 
 Template.getevent.onRendered(function() {
-  $(p).text("");
+  $("p").text("");
 });
 
 Template.curevents.helpers({
@@ -76,5 +76,10 @@ Template.event.helpers({
   res: function() {
     var id = FlowRouter.getParam("id");
     return Events.findOne({_id: id});
+  },
+  qrcode: function() {
+    const id = FlowRouter.getParam("id");
+    var url = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=" + encodeURI(JSON.stringify({"id": id}));
+    return url;
   }
 });
