@@ -2,16 +2,16 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import "./create.html";	
-import { getTimespanText } from "./date.js"
+import { getTimespanText } from "../imports/date.js"
 
 Template.create_wrapper.events({
 	'submit .create_event'(event) {
+		//stop from reloading the page
 		event.preventDefault();
 
 		//constructing object data
 		const form = event.target;
 		const locale = "-0700";
-
 		let start = Date.parse(form.startDate.value + "T" + form.startTime.value + locale),
 		end = Date.parse(form.endDate.value + "T" + form.endTime.value + locale);
 		let formData = {
@@ -26,6 +26,8 @@ Template.create_wrapper.events({
 			createdAt: new Date()
 		};
 		console.log(formData);
+
+		//adding it to the database
 		Meteor.call('events.create', formData);
 	}
 });
