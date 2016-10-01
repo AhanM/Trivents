@@ -9,12 +9,6 @@ import './getevent.html';
 
 BlazeLayout.setRoot('body');
 
-UI.registerHelper('breaklines', function(text, options) {
-  text = s.escapeHTML(text);
-  text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
-  return new Spacebars.SafeString(text);
-});
-
 function getDateString(timestamp, text) {
   const threshold = 23;
   const milliInHour = 60 * 60 * 1000;
@@ -26,6 +20,14 @@ function getDateString(timestamp, text) {
     return "In " + hourDifference + " hour" + ((hourDifference === 1) ? "" : "s");
   }
 }
+
+Template.getevent.onCreated(function bodyOnCreated() {
+  this.state = new ReactiveDict();
+});
+
+Template.getevent.onRendered(function() {
+  $(p).text("");
+});
 
 Template.curevents.helpers({
 	live_events: function() {
@@ -41,7 +43,7 @@ Template.curevents.helpers({
 });
 
 Template.getevent.events({
-  'submit .eventform'(event) {
+  'submit .eventform'(event, instance) {
     console.log("Yo");
     // Do stuff like enter this into collection
     // Prevent default browser form submit
@@ -52,12 +54,20 @@ Template.getevent.events({
     const text = target.url.value;
     
     // Insert into collection
-    Meteor.call('inserteventData', {eventurl: text});
-    instance.state.set
+    Meteor.call('inserteventData', {eventurl: text}, (err) => {
+      if(!err) {
+        $("p").text("Success");
+      } else {
+        $("p").text("Invalid URL");
+        console.log(err);
+      }
+    });
+  
     // Clear form
     target.url.value = '';
   },
 });
+
 
 Template.event.helpers({
   id: function() {
