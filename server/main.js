@@ -4,6 +4,32 @@ import { Events } from '../imports/api/events.js';
 
 FB.mapi = Meteor.wrapAsync(FB.napi);
 
+function Facebook(accessToken) {
+    this.fb = Meteor.npmRequire('fbgraph');
+    this.accessToken = accessToken;
+    this.fb.setAccessToken(this.accessToken);
+    this.options = {
+        timeout: 3000,
+        pool: {maxSockets: Infinity},
+        headers: {connection: "keep-alive"}
+    }
+    this.fb.setOptions(this.options);
+}
+Facebook.prototype.query = function(query, method) {
+    var self = this;
+    var method = (typeof method === 'undefined') ? 'get' : method;
+    var data = Meteor.sync(function(done) {
+        self.fb[method](query, function(err, res) {
+            done(null, res);
+        });
+    });
+    return data.result;
+}
+
+Facebook.prototype.getUserData = function() {
+    return this.query('me');
+}
+
 Meteor.startup(() => {
   // code to run on server at startup
 
@@ -32,9 +58,11 @@ Meteor.methods({
 			lat: res.place.location.latitude,
 			lng: res.place.location.longitude,
 			time: res.start_time,
+			endtime: res.end_time,
 			createdAt: new Date(),
 		});
 
 		console.log(res);
 	},
+	// 'posteventData'({name, description, loc, lat,lng, time, picture})
 });

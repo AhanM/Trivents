@@ -1,9 +1,23 @@
 <head>
   <title>SDhacks</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
 </head>
 
 <body>
+  <div class="container">
+    {{> loginButtons}}
 
+    <!-- <br>
+
+    <p>
+      <strong>Email address:</strong> {{emailAddr}}
+      <br>
+      <strong>Gender:</strong> {{gender}}
+    </p>
+
+    {{userData}} -->
+  </div>
 </body>
 
 <template name="mainLayout">
@@ -21,7 +35,7 @@
   <h3>Live Events</h3>
   <ul>
     {{#each events}}
-      {{> eventli}}
+    {{> eventli}}
     {{/each}}
   </ul>
 </template>
@@ -32,13 +46,13 @@
 
 <template name="event">
   <p>This is Event ID: {{id}}
-  <br>
-  <b>Name:</b> {{res.name}}
-  <br>
-  <b>Description:</b> {{res.description}}
-  <br>
-  <b>Location:</b> {{res.loc}}
-  <br>
-  <b>Time:</b> {{res.time}}</p>
+    <br>
+    <b>Name:</b> {{res.name}}
+    <br>
+    <b>Description:</b> {{res.description}}
+    <br>
+    <b>Location:</b> {{res.loc}}
+    <br>
+    <b>Time:</b> {{res.time}}</p>
 
-</template>
+  </template>
