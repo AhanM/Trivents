@@ -9,8 +9,7 @@
   <div class="container" style="width: 80%; padding-top: 25px;">
     <div style="float:right">{{> loginButtons}}</div>
     <br>
-    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>-->
+
 
 
     <!--Import Google Icon Font-->
@@ -28,8 +27,7 @@
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   </div>
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+
 
 
   
@@ -66,42 +64,45 @@
     {{/each}}
   </ul>
 
-  <div id = "divider2"> <center>Later Today</center> </div>
+  <div id = "divider2"> <center>Upcoming Events</center> </div>
   <ul>
   {{#each future_events}}
     <br>
     <div id = "event">
       {{> eventli}}
     </div>
-    <br>
     {{/each}}
   </ul>
 </template>
 
 <template name="eventli">
-  <li><a href="/event/{{_id}}"><h5>{{name}}</h5></a>
+
+  <div class = "collection">
+  <a href="/event/{{_id}}" class = "collection-item">
+<h5>{{name}}</h5>
     <div id = "details">
-      <h6>
+
         <b>Date & Time:</b> &nbsp; {{time}} <br>
-        <b>Location:</b> &nbsp; {{loc}} </h6> 
-      </div>
-    </li>
+        <b>Location:</b> &nbsp; {{loc}} 
+ 
+    </div>
+
+    </a>
+  </div>
+
+</template>
+
+<template name="event">
+  <p style="padding: 50px;">
+    <br>
+    <h3><b>{{res.name}}</b></h3><h4>{{res.loc}}</h4>
+    <h5>{{res.time}} - {{res.picture}}</h5>
+    <br>
+    <h5>Description:</h5>
     <br> 
-  </template>
-
-  <template name="event">
-    <p style="padding: 50px;">
-      <br>
-      <h3><b>{{res.name}}</b></h3><h4>{{res.loc}}</h4>
-      <h5>{{res.time}} - {{res.picture}}</h5>
-      <br>
-      <h5>Description:</h5>
-      <br> 
-      <div class="well pre">{{res.description}}</div>
-      <br>
-      
-      <br>
-      </p>
-
-    </template>
+    <div class="well pre">{{res.description}}</div>
+    <br>
+    <br>
+    </p>
+</template>
 
