@@ -8,6 +8,12 @@ import './getevent.html';
 
 BlazeLayout.setRoot('body');
 
+UI.registerHelper('breaklines', function(text, options) {
+  text = s.escapeHTML(text);
+  text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
+  return new Spacebars.SafeString(text);
+});
+
 function getDateString(timestamp) {
   const threshold = 23;
   const milliInHour = 60 * 60 * 1000;

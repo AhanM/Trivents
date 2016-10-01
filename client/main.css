@@ -67,6 +67,10 @@ ul {
 	font-weight: 500;
 }
 
+.well.pre {
+  white-space: pre-wrap;
+}
+
 /*!
  * Materialize v0.97.7 (http://materializecss.com)
  * Copyright 2014-2015 Materialize

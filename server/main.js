@@ -46,10 +46,16 @@ Meteor.methods({
 
 		identifier = eventurl.substring(eventurl.lastIndexOf("/"));
 
-		console.log("identified")
 		var res = FB.mapi(identifier, {
 			access_token: "249276968799606|SbS-5WRPQ8h1YxQmHTNFaw8i3J8"
 		});
+
+		// var response = FB.mapi(
+  //   		identifier+"/picture", {
+  //         access_token: Meteor.user().services.facebook.accessToken
+  //   });
+
+  //   res.picture = response.data.url;
 
 		Events.insert({
 			name: res.name,
@@ -64,9 +70,11 @@ Meteor.methods({
 			end_time: Date.parse(res.end_time),
 
 			createdAt: new Date(),
+
+      // picture: res.picture
 		});
 
-		console.log(res);
+		console.log(res.picture);
 	},
 	// 'posteventData'({name, description, loc, lat,lng, time, picture})
 });

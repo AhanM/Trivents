@@ -6,9 +6,9 @@
 </head>
 
 <body>
-  <div class="container">
-    {{> loginButtons}}
-
+  <div class="container" style="width: 80%; padding-top: 25px;">
+    <div style="float:right">{{> loginButtons}}</div>
+    <br>
     <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>-->
 
@@ -32,18 +32,13 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
-  <div id = "heading">
-    <h2><b><center> Events </center></b></h2>
-  </div>
+  
 </body>
 
 
 
 
 <template name="mainLayout">
-  <header>
-    <a href="/getevent">Add Facebook Event</a><br><br>
-  </header>
   <main>
     {{> Template.dynamic template=main}}
   </main>
@@ -51,6 +46,15 @@
 </template>
 
 <template name="curevents">
+
+  <div id = "heading">
+    <h2><b><center> Events </center></b></h2>
+  </div>
+
+  <header>
+    <a href="/getevent">Add Facebook Event</a><br><br>
+  </header>
+
   <div id = "divider"> <center>Happening Right Now!</center> </div>
   <ul>
     {{#each live_events}}
@@ -86,15 +90,18 @@
   </template>
 
   <template name="event">
-    <p>
+    <p style="padding: 50px;">
       <br>
-      <b>Name:</b> {{res.name}}
+      <h3><b>{{res.name}}</b></h3><h4>{{res.loc}}</h4>
+      <h5>{{res.time}} - {{res.picture}}</h5>
       <br>
-      <b>Description:</b> {{res.description}}
+      <h5>Description:</h5>
+      <br> 
+      <div class="well pre">{{res.description}}</div>
       <br>
-      <b>Location:</b> {{res.loc}}
+      
       <br>
-      <b>Time:</b> {{res.time}}</p>
+      </p>
 
     </template>
 
