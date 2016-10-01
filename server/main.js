@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import FB from 'fb';
 import { Events } from '../imports/api/events.js';
-
+import { getTimespanText } from "../imports/date.js";
 FB.mapi = Meteor.wrapAsync(FB.napi);
 
 function Facebook(accessToken) {
@@ -34,7 +34,9 @@ Meteor.startup(() => {
   // code to run on server at startup
 
 });
+{
 
+}
 Meteor.methods({
 	'inserteventData'({eventurl}) {
 		console.log("Invoked inserteventData");
@@ -56,25 +58,22 @@ Meteor.methods({
   //   });
 
   //   res.picture = response.data.url;
-
-		Events.insert({
+  		let start = Date.parse(res.start_time),
+  		end = Date.parse(res.end_time);
+  		Meteor.call('events.create', {
 			name: res.name,
 			description: res.description,
 			loc: res.place.name,
 			lat: res.place.location.latitude,
 			lng: res.place.location.longitude,
 
-			time: res.start_time,
-			endtime: res.end_time,
-			start_time: Date.parse(res.start_time),
-			end_time: Date.parse(res.end_time),
+			time: getTimespanText(start, end),
+			start_time: start,
+			end_time: end,
 
 			createdAt: new Date(),
-
-      // picture: res.picture
+      		// picture: res.picture
 		});
-
-		console.log(res.picture);
-	},
+	}
 	// 'posteventData'({name, description, loc, lat,lng, time, picture})
 });
