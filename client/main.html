@@ -1,5 +1,6 @@
 <head>
   <title>SDhacks</title>
+
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
 </head>
@@ -8,51 +9,80 @@
   <div class="container">
     {{> loginButtons}}
 
-    <!-- <br>
 
-    <p>
-      <strong>Email address:</strong> {{emailAddr}}
-      <br>
-      <strong>Gender:</strong> {{gender}}
-    </p>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
-    {{userData}} -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/style2.css"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+  <div id = "heading">
+    <h2><b><center> Events </center></b></h2>
   </div>
 </body>
 
+
+
+
 <template name="mainLayout">
   <header>
-    <h1>Welcome to Trivents!</h1>
-    <h3><a href="/getevent">Get Events</a></h3>
+    <a href="/getevent">Add Facebook Event</a><br><br>
   </header>
   <main>
     {{> Template.dynamic template=main}}
   </main>
-  <footer>We Love Meteor</footer>
+
 </template>
 
 <template name="curevents">
-  <h3>Live Events</h3>
+  <div id = "divider"> <center>Happening Right Now!</center> </div>
   <ul>
     {{#each events}}
-    {{> eventli}}
+    <br>
+    <div id = "event">
+      {{> eventli}}
+    </div>
+    <br>
     {{/each}}
   </ul>
+
+  <div id = "divider2"> <center>Later Today</center> </div>
 </template>
 
 <template name="eventli">
-  <li><a href="/event/{{_id}}">{{name}}</a></li>
-</template>
-
-<template name="event">
-  <p>This is Event ID: {{id}}
-    <br>
-    <b>Name:</b> {{res.name}}
-    <br>
-    <b>Description:</b> {{res.description}}
-    <br>
-    <b>Location:</b> {{res.loc}}
-    <br>
-    <b>Time:</b> {{res.time}}</p>
-
+  <li><a href="/event/{{_id}}"><h5>{{name}}</h5></a>
+    <div id = "details">
+      <h6>
+        <b>Date & Time:</b> &nbsp; {{time}} <br>
+        <b>Location:</b> &nbsp; {{loc}} </h6> 
+      </div>
+    </li>
+    <br> 
   </template>
+
+  <template name="event">
+    <p>
+      <br>
+      <b>Name:</b> {{res.name}}
+      <br>
+      <b>Description:</b> {{res.description}}
+      <br>
+      <b>Location:</b> {{res.loc}}
+      <br>
+      <b>Time:</b> {{res.time}}</p>
+
+    </template>
+
