@@ -57,8 +57,12 @@ Meteor.methods({
 			loc: res.place.name,
 			lat: res.place.location.latitude,
 			lng: res.place.location.longitude,
+
 			time: res.start_time,
 			endtime: res.end_time,
+			start_time: Date.parse(res.start_time),
+			end_time: Date.parse(res.end_time),
+
 			createdAt: new Date(),
 		});
 

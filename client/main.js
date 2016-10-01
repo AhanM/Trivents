@@ -8,9 +8,28 @@ import './getevent.html';
 
 BlazeLayout.setRoot('body');
 
+function getDateString(timestamp) {
+  const threshold = 23;
+  const milliInHour = 60 * 60 * 1000;
+  const hourDifference = Math.floor((timestamp - Date.now()) / milliInHour);
+
+  if (hourDifference < 1 || hourDifference > threshold) {
+    return new Date(timestamp).toLocaleString();
+  } else {
+    return "In " + hourDifference + " hour" + ((hourDifference === 1) ? "" : "s");
+  }
+}
+
 Template.curevents.helpers({
-	events: function() {
-    return Events.find({}, { sort: { createdAt: -1 }});
+	live_events: function() {
+    const currTime = Date.now();
+    let events = Events.find({ start_time: {$lt: currTime}, end_time: {$gt: currTime} }, { sort: { start_time: 1 }});
+    return events.map(e => { e.time = getDateString(e.start_time); return e; });
+  },
+  future_events: function() {
+    const currTime = Date.now();
+    let events = Events.find({ start_time: {$gt: currTime} }, { sort: { start_time: 1 }});
+    return events.map(e => { e.time = getDateString(e.start_time); return e; })
   }
 });
 
