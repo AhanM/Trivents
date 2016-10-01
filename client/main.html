@@ -17,8 +17,8 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>-->
 
 
       <div id = "heading">
@@ -45,18 +45,27 @@
 </template>
 
 <template name="curevents">
-      <div id = "divider"> <center>Happening Right Now!</center> </div>
+  <div id = "divider"> <center>Happening Right Now!</center> </div>
   <ul>
-    {{#each events}}
+    {{#each live_events}}
     <br>
     <div id = "event">
-      <li class="collection-item">{{> eventli}}</li>
-      </div>
-      <br>
+      {{> eventli}}
+    </div>
+    <br>
     {{/each}}
   </ul>
 
-        <div id = "divider2"> <center>Later Today</center> </div>
+  <div id = "divider2"> <center>Later Today</center> </div>
+  <ul>
+  {{#each future_events}}
+    <br>
+    <div id = "event">
+      {{> eventli}}
+    </div>
+    <br>
+    {{/each}}
+  </ul>
 </template>
 
 <template name="eventli">
