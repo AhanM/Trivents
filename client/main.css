@@ -107,10 +107,34 @@ a:hover{
  }
 
 .input-field{
-  width: 30%;
+  width: 50%;
   margin: auto;
 }
 
 .input-field input {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.nav-wrapper{
+	background-color: #333745;
+
+}
+
+.nav-wrapper a{
+	color: white;
+}
+
+.new-wrapper a:hover{
+	text-decoration: underline;
+
+}
+
+#headerbg{
+	background-image: url('https://hd.unsplash.com/photo-1468476775582-6bede20f356f'); background-repeat: no-repeat; background-size: cover; opacity: 0.95;
+
+}
+
+#whitebg{
+	background-color: white;
+	width: 70%;
 }
