@@ -3,19 +3,32 @@
 </head>
 
 <body>
-  <h1>Welcome to Trivents!</h1>
-  {{> curevents}}
+
 </body>
+
+<template name="mainLayout">
+  <header>
+    <h1>Welcome to Trivents!</h1>
+  </header>
+  <main>
+    {{> Template.dynamic template=main}}
+  </main>
+  <footer>We Love Meteor</footer>
+</template>
 
 <template name="curevents">
   <h3>Live Events</h3>
   <ul>
     {{#each events}}
-      {{> event}}
+      {{> eventli}}
     {{/each}}
   </ul>
 </template>
 
+<template name="eventli">
+  <li><a href="/event/{{id}}">{{text}}</a></li>
+</template>
+
 <template name="event">
-  <li><a href="">{{text}}</a></li>
+  <p>This is event {{id}}</p>
 </template>
