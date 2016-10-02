@@ -1,29 +1,49 @@
 <template name='create_wrapper'>
-	<form class='create_event'>
-		<label>Event Name</label>
-		<input type=text name='eventName'><br>
+	    <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">&nbsp; &nbsp; QREvents</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/getevent">Add a Facebook Event</a></li>
+        <li><a href="/postevent">Create an Event</a></li>
+      </ul>
+    </div>
+  </nav>
 
-		<label>Event Location</label>
-		<input type=text id='loc' name='location'><br>
+	<center>
+	<div id = "whitebg">
+	<form class='create_event'>
+		<div class = "input-field">
+		<br><br><br>
+
+		<h5>Event Name:</h5> 
+		<input type=text name='eventName' placeholder="Enter event name"><br><br><br>
+
+		<h5>Event Location</h5>
+		<input type=text id='loc' name='location'><br><br><br>
 		<input type=hidden id='lat' name='lat'>
 		<input type=hidden id='lng' name='lng'>
 
-		<label>Start Time</label>
+		<h5>Start Time</h5>
 		<input type=date name='startDate'>
-		<input type=time name='startTime'><br>
+		<input type=time name='startTime'><br><br><br>
 
-		<label>End Time</label>
+		<h5>End Time</h5>
 		<input type=date name='endDate'>
-		<input type=time name='endTime'><br>
+		<input type=time name='endTime'><br><br><br>
 
-		<label>Description</label>
-		<textarea name='description'></textarea><br>
+		<h5>Description</h5>
+		<textarea id="textarea1" placeholder = "Describe the event" class="materialize-textarea" name='description'></textarea><br><br><br>
 
-		<label>Photo</label>
-		<input type=file><br>	
+<!--		<h5>Photo</h5>
+		<input type=file><br><br><br>	-->
 
-		<input type=submit>
+		<input class="waves-effect waves-light btn" type ="submit">
+		<br><br><br>
+
+		</div>
 	</form>
+	</div>
+	</center>
 
 	<script>
 		window.google = window.google || {};

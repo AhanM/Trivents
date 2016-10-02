@@ -6,11 +6,6 @@
 </head>
 
 <body>
-  <div class="container" style="width: 80%; padding-top: 25px;">
-    <div style="float:right">{{> loginButtons}}</div>
-    <br>
-
-
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,14 +32,30 @@
 </template>
 
 <template name="curevents">
+  <div id = "headerbg">
 
+    <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">&nbsp; &nbsp; QREvents</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/getevent">Add a Facebook Event</a></li>
+        <li><a href="/postevent">Create an Event</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container" style="width: 80%; padding-top: 25px;">
+    <div style="float:right;">{{> loginButtons}}</div> 
+  </div>
+  <br>
   <div id = "heading">
     <h2><b><center> Events </center></b></h2>
   </div>
+  <br>
 
-  <header>
-    <a href="/getevent">Add Facebook Event</a><br><br>
-  </header>
+  </div>
+
+
 
   <div id = "divider"> <center>Happening Right Now!</center> </div>
   <ul>
