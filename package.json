@@ -1,6 +1,6 @@
 {
-  "name": "SDhacks",
-  "private": true,
+  "name": "Trivents",
+  "private": false,
   "scripts": {
     "start": "meteor run"
   },

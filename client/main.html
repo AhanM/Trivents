@@ -1,5 +1,5 @@
 <head>
-  <title>SDhacks</title>
+  <title>Trivents</title>
 
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
@@ -20,8 +20,8 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  </div>
-  
+
+
 </body>
 
 <template name="mainLayout">
@@ -36,16 +36,16 @@
 
     <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">&nbsp; &nbsp; QREvents</a>
+      <a href="/" class="brand-logo">&nbsp; &nbsp; Trivents</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/getevent">Add a Facebook Event</a></li>
         <li><a href="/postevent">Create an Event</a></li>
       </ul>
     </div>
   </nav>
-  
+
   <div class="container" style="width: 80%; padding-top: 25px;">
-    <div style="float:right;">{{> loginButtons}}</div> 
+    <div style="float:right;">{{> loginButtons}}</div>
   </div>
   <br>
   <div id = "heading">
@@ -87,8 +87,8 @@
     <div id = "details">
 
         <b>Date & Time:</b> &nbsp; {{time}} <br>
-        <b>Location:</b> &nbsp; {{loc}} 
- 
+        <b>Location:</b> &nbsp; {{loc}}
+
     </div>
 
     </a>
@@ -103,11 +103,10 @@
     <h5>{{res.time}} - {{res.picture}}</h5>
     <br>
     <h5>Description:</h5>
-    <br> 
-    <div class="well pre">{{res.description}}</div>
+    <br>
+    <div class="well">{{res.description}}</div>
     <br>
     <img src="{{qrcode}}">
     <br>
     </p>
 </template>
-
